@@ -1,0 +1,7 @@
+{
+  "name": "petfriend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
