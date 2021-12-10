@@ -1,9 +1,36 @@
 <ion-header>
   <ion-toolbar color = 'primary'>
-    <ion-title>Home</ion-title>
+    <ion-title>Pets</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list *mobxAutorun>
+    <ion-item [color]="pet.archived ? 'danger' : ''" *ngFor='let pet of pets'>
+      <ion-label>
+        <h2>{{pet.name}}</h2>
+        <p>{{pet.species}}</p>
+        <p>{{pet.birthday}}</p>
+        <p>{{pet.breed}}</p>
+        <p>{{pet.color}}</p>   
+        <p>{{pet.description}}</p>
+        <p>{{pet.adopted}}</p> 
+        <p>{{pet.gender}}</p>
+        <p>{{pet.altered}}</p>
+        <p>{{pet.microchipped}}</p>
+       </ion-label>
+       <ion-button slot="end" (click)="archivePet(pet)">
+         <ion-icon name="trash"></ion-icon>
+       </ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Archived Pets: {{archivedPetCount}}
+      </ion-label>
+    </ion-item>
+    <ion-button expand="block" (click)="createPet()">
+      Add Pet
+    </ion-button>
+  </ion-list>
 
 </ion-content>
