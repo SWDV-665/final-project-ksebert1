@@ -11,7 +11,8 @@ export interface IPet {
     gender: string;
     altered: boolean;
     microchipped: boolean;
-    archived: boolean
+    archived: boolean;
+    photo: object;
 }
 
 export class Pet implements IPet{
@@ -26,7 +27,8 @@ export class Pet implements IPet{
     gender: string;
     altered: boolean;
     microchipped: boolean;
-    archived: boolean
+    archived: boolean;
+    photo: object;
 
     //the constructor might be passed values for pet, if not it sets defaults.
     constructor (pet: Partial<IPet>){
@@ -42,6 +44,7 @@ export class Pet implements IPet{
         this.altered = pet.altered !== undefined ? pet.altered: false;
         this.microchipped = pet.microchipped !== undefined ? pet.microchipped : false;
         this.archived = pet.archived !== undefined ? pet.archived : false;
+        this.photo = pet.photo !== undefined ? pet.photo : new Object;
     }
 
 }

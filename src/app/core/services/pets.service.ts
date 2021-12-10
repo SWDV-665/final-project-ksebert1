@@ -20,13 +20,13 @@ export class PetsService {
   @action
   archivePet(pet: Pet){
   pet.archived = true;
-  console.log(pet +" was archived")
+  console.log(JSON.stringify(pet) +" was archived")
   };
 
   @action
   createPet(pet:Partial<IPet>) {
   this.pets.push(new Pet({
-    name: 'My new Pet',
+    name: 'My New Pet',
     archived: false
   }));
   console.log('Added a new pet')
