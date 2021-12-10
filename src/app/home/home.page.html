@@ -6,7 +6,7 @@
 
 <ion-content>
   <ion-list *mobxAutorun>
-    <ion-item [color]="pet.archived ? 'danger' : ''" *ngFor='let pet of pets'>
+    <ion-item [color]="pet.archived ? 'danger' : ''" *ngFor='let pet of store.pets'>
       <ion-label>
         <h2>{{pet.name}}</h2>
         <p>{{pet.species}}</p>
@@ -25,7 +25,7 @@
     </ion-item>
     <ion-item>
       <ion-label>
-        Archived Pets: {{archivedPetCount}}
+        Archived Pets: {{store.archivedPetCount}}
       </ion-label>
     </ion-item>
     <ion-button expand="block" (click)="createPet()">
