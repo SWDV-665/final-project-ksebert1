@@ -20,7 +20,7 @@ export interface IPet {
 export class Pet implements IPet{
     id: number;
     name: string;
-    species: string;
+   @observable species: string;
     birthday: Date;
     breed: string;
     color: string;

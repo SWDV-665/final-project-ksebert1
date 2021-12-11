@@ -1,9 +1,11 @@
 
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ModalController, PopoverController} from '@ionic/angular';
+import { PetsFilters } from '../core/constants/pets-filters.enum';
 import { Pet } from '../core/models/pet.model';
 import { PetsService } from '../core/services/pets.service';
 import { ManagePetComponent, PetManageModes } from './components/manage-pet/manage-pet.component';
+import { PetsFiltersPopoverComponent } from './components/pets-filters-popover/pets-filters-popover.component';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +25,25 @@ export class HomePage implements OnInit {
       name: 'Sample Pet',
       species: 'cat'
     });
+  }
+
+  async showFilters(ev){
+    console.log(ev + " filter selected");
+    const popover = await this.popoverController.create({
+      component: PetsFiltersPopoverComponent,
+      event: ev,
+      translucent: true,
+      componentProps: {
+        selectedFilter: this.store.filter
+      }
+    });
+    await popover.present();
+    const response = await popover.onDidDismiss();
+    if (response.data){
+      // console.log(response.data);
+      this.store.setFilter(response.data as PetsFilters);
+
+    }
   }
   
   archivePet(pet: Pet){

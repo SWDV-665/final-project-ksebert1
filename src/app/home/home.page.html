@@ -1,12 +1,15 @@
 <ion-header>
   <ion-toolbar color = 'primary'>
     <ion-title>Pets</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon name="funnel" (click)="showFilters($event)"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="home">
   <ion-list *mobxAutorun class="home__pets">
-    <ion-card [class.home__notes__item--archived]="!!pet.archived" class="home__pets__item" *ngFor='let pet of store.pets'>
+    <ion-card [class.home__pets__item--archived]="!!pet.archived" class="home__pets__item" *ngFor='let pet of store.filteredPets'>
       <ion-card-header>
         <ion-card-title>{{pet.name}}</ion-card-title>
       </ion-card-header>    

@@ -6,6 +6,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 import { MobxAngularModule } from 'mobx-angular';
 import {  ManagePetComponent } from './components/manage-pet/manage-pet.component';
+import { PetsFiltersPopoverComponent } from './components/pets-filters-popover/pets-filters-popover.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -15,7 +16,7 @@ import {  ManagePetComponent } from './components/manage-pet/manage-pet.componen
     HomePageRoutingModule,
     MobxAngularModule
   ],
-  entryComponents : [ManagePetComponent],
-  declarations: [HomePage, ManagePetComponent]
+  entryComponents : [ManagePetComponent, PetsFiltersPopoverComponent],
+  declarations: [HomePage, ManagePetComponent, PetsFiltersPopoverComponent]
 })
 export class HomePageModule {}
