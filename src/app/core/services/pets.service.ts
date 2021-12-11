@@ -25,11 +25,19 @@ export class PetsService {
 
   @action
   createPet(pet:Partial<IPet>) {
-  this.pets.push(new Pet({
-    name: pet.name,
-    archived: false
-  }));
-  console.log('Added a new pet')
+  this.pets.push(new Pet(pet));
+  console.log('Added a new pet.')
+  }
+
+  @action
+  updatePet(pet:Pet) {
+    console.log("updating: " + JSON.stringify(pet))
+    for (let i = 0, len = this.pets.length; i < len; ++i){
+      if (pet.id === this.pets[i].id){
+        this.pets[i] = pet;
+        break;
+      }
+    }
   }
 
   @computed

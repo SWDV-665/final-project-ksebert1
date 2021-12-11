@@ -1,6 +1,6 @@
 
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ModalController} from '@ionic/angular';
+import { ModalController, PopoverController} from '@ionic/angular';
 import { Pet } from '../core/models/pet.model';
 import { PetsService } from '../core/services/pets.service';
 import { ManagePetComponent, PetManageModes } from './components/manage-pet/manage-pet.component';
@@ -14,10 +14,15 @@ import { ManagePetComponent, PetManageModes } from './components/manage-pet/mana
 export class HomePage implements OnInit {
   constructor(
     public store: PetsService,
-    public modalController: ModalController
+    public modalController: ModalController,
+    public popoverController: PopoverController
     ) { }
 
   ngOnInit() {
+    this.store.createPet({
+      name: 'Sample Pet',
+      species: 'cat'
+    });
   }
   
   archivePet(pet: Pet){
@@ -34,14 +39,11 @@ export class HomePage implements OnInit {
     });
     await modal.present();
     const response = await modal.onDidDismiss();
-    console.log(response);
     const pet = response.data as Pet;
     if (pet){
       this.store.createPet(pet);
     }
-
-
-    }
+  }
 
     async editPet(petItem: Pet){
       const modal = await this.modalController.create({
@@ -55,7 +57,7 @@ export class HomePage implements OnInit {
       const response = await modal.onDidDismiss();
       const pet = response.data as Pet;
       if (pet){
-        this.store.createPet(pet);
+        this.store.updatePet(pet);
       }
 
 

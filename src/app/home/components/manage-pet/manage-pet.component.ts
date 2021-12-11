@@ -27,21 +27,44 @@ export class ManagePetComponent implements OnInit {
     this.petForm = this.fb.group({
       name: ['',[Validators.required]],
       species: ['', [Validators.required]],
-      birthday: ['', ],
-      breed: ['', ],
-      color: ['', ],
-      description: ['', ],
-      adopted: ['', ],
-      sex: ['', ],
-      altered: ['', [Validators.required]],
-      microchipped: ['', [Validators.required]],
-      photo: ['', [Validators.required]],
+      birthday: ['', Date],
+      breed: ['', String],
+      color: ['',String ],
+      description: ['',[] ],
+      adopted: ['', Date],
+      sex: ['', Boolean],
+      altered: ['',Boolean ],
+      microchipped: ['', Boolean],
+      photo: ['', []],
     });
+
+    if(this.pet && this.mode === this.manageModes.EDIT){
+      this.petForm.get('name').setValue(this.pet.name);
+      this.petForm.get('species').setValue(this.pet.species);
+      this.petForm.get('birthday').setValue(this.pet.birthday);
+      this.petForm.get('breed').setValue(this.pet.breed);
+      this.petForm.get('color').setValue(this.pet.color);
+      this.petForm.get('description').setValue(this.pet.description);
+      this.petForm.get('adopted').setValue(this.pet.adopted);
+      this.petForm.get('sex').setValue(this.pet.sex);
+      this.petForm.get('altered').setValue(this.pet.altered);
+      this.petForm.get('microchpped').setValue(this.pet.microchipped);
+      this.petForm.get('photo').setValue(this.pet.photo);
+    }
   }
 
   formSubmit(){
     console.log(this.petForm.value);
-    this.modalController.dismiss(this.petForm.value);
+    let params = '';
+    if (this.mode === this.manageModes.ADD){
+      params = this.petForm.value;
+    } else {
+      params = {
+        ...this.pet,
+        ...this.petForm.value
+      };
+    }
+    this.modalController.dismiss(params);
 
   }
 

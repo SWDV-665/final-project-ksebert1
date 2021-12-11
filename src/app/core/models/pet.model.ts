@@ -1,3 +1,5 @@
+import { observable, action } from "mobx-angular";
+
 //Creating an interface for Pet
 export interface IPet {
     id: number;
@@ -27,7 +29,7 @@ export class Pet implements IPet{
     sex: string;
     altered: boolean;
     microchipped: boolean;
-    archived: boolean;
+    @observable archived: boolean;
     photo: object;
 
     //the constructor might be passed values for pet, if not it sets defaults.
@@ -43,8 +45,14 @@ export class Pet implements IPet{
         this.sex = pet.sex ? pet.sex : "";
         this.altered = pet.altered !== undefined ? pet.altered: false;
         this.microchipped = pet.microchipped !== undefined ? pet.microchipped : false;
-        this.archived = pet.archived !== undefined ? pet.archived : false;
+        this.setArchived(pet.archived !== undefined ? pet.archived : false)
         this.photo = pet.photo !== undefined ? pet.photo : new Object;
     }
+
+    @action
+    setArchived(value){
+        this.archived = value;
+    }
+
 
 }
