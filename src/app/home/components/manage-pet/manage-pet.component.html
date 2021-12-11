@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar color = 'primary'>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="arrow-back">          
+        </ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Add Pet</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding class="manage-pet">
+  <form [formGroup]="petForm" (submit)="formSubmit()">
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">
+        Name
+      </ion-label>
+      <ion-input formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">
+      Species
+      </ion-label>
+      <ion-input formControlName="species"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">
+        Birthday
+      </ion-label>
+      <ion-datetime formControlName="birthday" display-format="MM DD YY" placeholder="Select Date"></ion-datetime>
+    </ion-item>  
+    <ion-item>
+      <ion-label position="stacked">
+        Breed
+      </ion-label>
+      <ion-input>
+      </ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-label position="stacked">
+        Color
+      </ion-label>
+      <ion-input>
+      </ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-label position="stacked">
+        Description
+      </ion-label>
+      <ion-textarea rows="2">
+      </ion-textarea>
+    </ion-item> 
+    <ion-item>
+      <ion-label position="stacked">
+        Sex
+      </ion-label>
+      <ion-input>
+
+      </ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-label position="stacked">
+        Altered?
+      </ion-label>
+      <ion-input>
+
+      </ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-label position="stacked">
+        Microchipped?
+      </ion-label>
+      <ion-input>
+
+      </ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-label position="stacked">
+        Photo
+      </ion-label>
+      <ion-input>
+      </ion-input>
+    </ion-item> 
+    <ion-button type="submit" expand="block" fill="outline">
+      Save
+    </ion-button>
+  </ion-list>
+</form>
+</ion-content>
+
+

@@ -1,10 +1,9 @@
-import { NotExpr } from '@angular/compiler';
+
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { action, computed} from 'mobx';
-import { observable } from 'mobx-angular';
-import { MobxAngularModule } from 'mobx-angular';
+import { ModalController} from '@ionic/angular';
 import { Pet } from '../core/models/pet.model';
 import { PetsService } from '../core/services/pets.service';
+import { ManagePetComponent, PetManageModes } from './components/manage-pet/manage-pet.component';
 
 @Component({
   selector: 'app-home',
@@ -13,21 +12,53 @@ import { PetsService } from '../core/services/pets.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePage implements OnInit {
-  constructor(public store: PetsService ) { }
+  constructor(
+    public store: PetsService,
+    public modalController: ModalController
+    ) { }
 
   ngOnInit() {
   }
   
   archivePet(pet: Pet){
     this.store.archivePet(pet);
-    };
+  };
 
-    createPet() {
-    this.store.createPet({
-      name: 'My new Pet',
-      archived: false
+  async createPet() {
+    const modal = await this.modalController.create({
+      component: ManagePetComponent,
+      componentProps: {
+        mode: PetManageModes.ADD,
+        pet: null
+      }
     });
+    await modal.present();
+    const response = await modal.onDidDismiss();
+    console.log(response);
+    const pet = response.data as Pet;
+    if (pet){
+      this.store.createPet(pet);
+    }
+
 
     }
 
-}
+    async editPet(petItem: Pet){
+      const modal = await this.modalController.create({
+        component: ManagePetComponent,
+        componentProps: {
+          mode: PetManageModes.EDIT,
+          pet: petItem
+        }
+      });
+      await modal.present();
+      const response = await modal.onDidDismiss();
+      const pet = response.data as Pet;
+      if (pet){
+        this.store.createPet(pet);
+      }
+
+
+    }
+
+  }

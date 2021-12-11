@@ -6,23 +6,6 @@
 
 <ion-content class="home">
   <ion-list *mobxAutorun class="home__pets">
-    <!-- <ion-item [color]="pet.archived ? 'danger' : ''" *ngFor='let pet of store.pets'>
-      <ion-label>
-        <h2>{{pet.name}}</h2>
-        <p>{{pet.species}}</p>
-        <p>{{pet.birthday}}</p>
-        <p>{{pet.breed}}</p>
-        <p>{{pet.color}}</p>   
-        <p>{{pet.description}}</p>
-        <p>{{pet.adopted}}</p> 
-        <p>{{pet.gender}}</p>
-        <p>{{pet.altered}}</p>
-        <p>{{pet.microchipped}}</p>
-       </ion-label>
-       <ion-button slot="end" (click)="archivePet(pet)">
-         <ion-icon name="trash"></ion-icon>
-       </ion-button>
-    </ion-item> -->
     <ion-card [class.home__notes__item--archived]="!!pet.archived" class="home__pets__item" *ngFor='let pet of store.pets'>
       <ion-card-header>
         <ion-card-title>{{pet.name}}</ion-card-title>
@@ -38,7 +21,7 @@
         <p>{{pet.altered}}</p>
         <p>{{pet.microchipped}}</p>
         <div class="home__pets__item__actions">
-          <ion-button color="dark" fill="outline">
+          <ion-button (click)="editPet(pet)" color="dark" fill="outline">
             <ion-icon name="create">
             </ion-icon>
           </ion-button>
@@ -49,14 +32,12 @@
         </div>
       </ion-card-content>
     </ion-card>
-    <ion-item>
-      <ion-label>
-        Archived Pets: {{store.archivedPetCount}}
-      </ion-label>
-    </ion-item>
-    <ion-button expand="block" (click)="createPet()">
-      Add Pet
-    </ion-button>
-  </ion-list>
+  </ion-list> 
+  <!-- fab placed to the bottom end -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color='secondary' (click)='createPet()'>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
 

@@ -26,7 +26,7 @@ export class PetsService {
   @action
   createPet(pet:Partial<IPet>) {
   this.pets.push(new Pet({
-    name: 'My New Pet',
+    name: pet.name,
     archived: false
   }));
   console.log('Added a new pet')

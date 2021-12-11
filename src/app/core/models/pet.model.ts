@@ -8,7 +8,7 @@ export interface IPet {
     color: string;
     description: string;
     adopted: Date;
-    gender: string;
+    sex: string;
     altered: boolean;
     microchipped: boolean;
     archived: boolean;
@@ -24,7 +24,7 @@ export class Pet implements IPet{
     color: string;
     description: string;
     adopted: Date;
-    gender: string;
+    sex: string;
     altered: boolean;
     microchipped: boolean;
     archived: boolean;
@@ -40,7 +40,7 @@ export class Pet implements IPet{
         this.color = pet.color ? pet.color : "";
         this.description = pet.description ? pet.description : "";
         this.adopted = pet.adopted ? pet.adopted : new Date;
-        this.gender = pet.gender ? pet.gender : "";
+        this.sex = pet.sex ? pet.sex : "";
         this.altered = pet.altered !== undefined ? pet.altered: false;
         this.microchipped = pet.microchipped !== undefined ? pet.microchipped : false;
         this.archived = pet.archived !== undefined ? pet.archived : false;
