@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { Pet } from 'src/app/core/models/pet.model';
+import { PictureService } from 'src/app/core/services/picture.service';
 
 export enum PetManageModes {
   ADD = 'add',
@@ -13,14 +14,17 @@ export enum PetManageModes {
   templateUrl: './manage-pet.component.html',
   styleUrls: ['./manage-pet.component.scss'],
 })
-export class ManagePetComponent  implements OnInit {
+
+export class ManagePetComponent implements OnInit {
   petForm: FormGroup;
   mode: PetManageModes = PetManageModes.ADD;
   pet: Pet;
   manageModes = PetManageModes;
+  petImage: string;
   constructor(
     public modalController: ModalController,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private pictureService: PictureService
     ) { }
 
   ngOnInit() {
@@ -36,8 +40,8 @@ export class ManagePetComponent  implements OnInit {
       altered: ['',Boolean ],
       microchipped: ['', Boolean],
       photo: ['', []],
+      
     });
-
     if(this.pet && this.mode === this.manageModes.EDIT){
       this.petForm.get('name').setValue(this.pet.name);
       this.petForm.get('species').setValue(this.pet.species);
@@ -49,19 +53,36 @@ export class ManagePetComponent  implements OnInit {
       this.petForm.get('sex').setValue(this.pet.sex);
       this.petForm.get('altered').setValue(this.pet.altered);
       this.petForm.get('microchipped').setValue(this.pet.microchipped);
-      this.petForm.get('photo').setValue(this.pet.photo);
+      // this.petForm.get('photo').setValue(this.pet.photo);
+      this.petImage = this.pet.imagePath ? this.pet.imagePath : '';
     }
+
+  }
+
+  async takePicture() {
+    try{
+      // const imageStr = await this.pictureService.getPicture(this.petImage);
+      const imageStr = await this.pictureService.getPicture();
+      this.petImage = imageStr;
+    } catch(err){
+      console.log(err);
+    }
+
   }
 
   formSubmit(){
     console.log(this.petForm.value);
     let params = '';
     if (this.mode === this.manageModes.ADD){
-      params = this.petForm.value;
+      params = {
+        ...this.petForm.value,
+        imagePath: this.petImage
+      };
     } else {
       params = {
         ...this.pet,
-        ...this.petForm.value
+        ...this.petForm.value,
+        imagePath : this.petImage
       };
     }
     this.modalController.dismiss(params);

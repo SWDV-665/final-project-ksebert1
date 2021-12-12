@@ -10,6 +10,7 @@
 <ion-content class="home">
   <ion-list *mobxAutorun class="home__pets">
     <ion-card [class.home__pets__item--archived]="!!pet.archived" class="home__pets__item" *ngFor='let pet of store.filteredPets'>
+      <img class="home__pets__item__img" alt="picture of your pet" *ngIf="pet.imagePath" [src]="pet.imagePath">
       <ion-card-header>
         <ion-card-title>{{pet.name}}</ion-card-title>
       </ion-card-header>    

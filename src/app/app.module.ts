@@ -11,7 +11,9 @@ import { SQLite } from '@ionic-native/sqlite/ngx';
 import { AppStartupService, startupServiceFactory } from './core/services/app-startup.service';
 import { STORE_CONFIG } from './core/constants/store-config';
 import { IonicStorageModule } from '@ionic/storage-angular';
-import {Drivers, Storage} from '@ionic/storage'
+import {Drivers, Storage} from '@ionic/storage';
+import {Camera} from '@ionic-native/camera/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +29,7 @@ import {Drivers, Storage} from '@ionic/storage'
     })],
     // IonicStorageModule.forRoot()],
   providers: [
+    Camera,
     SQLite,
     {
       provide: APP_INITIALIZER,

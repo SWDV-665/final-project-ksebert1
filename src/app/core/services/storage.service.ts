@@ -26,10 +26,10 @@ export class StorageService {
     if (this.platform.is('cordova')){
       console.log('We are on cordova');
       const db = await this.sqliteStorage.initStorage();
-          if (db) {
+      if (db) {
             return await this.sqliteStorage.database.executeSql(
               `CREATE TABLE IF NOT EXISTS pets
-              (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, species TEXT, birthday DATE, breed TEXT, color TEXT, description TEXT, adopted DATE, gender INTEGER, altered INTEGER default 0, microchpped INTEGER default 0, archived INTEGER default 0, photo TEXT `,
+              (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, species TEXT, birthday DATE, breed TEXT, color TEXT, description TEXT, adopted DATE, gender INTEGER, altered INTEGER default 0, microchpped INTEGER default 0, archived INTEGER default 0, photo TEXT , imagePath TEXT`,
               []
             );      
           } else{

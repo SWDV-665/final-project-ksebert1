@@ -50,6 +50,8 @@ export class HomePage implements OnInit {
     this.store.archivePet(pet);
   };
 
+
+
   async createPet() {
     const modal = await this.modalController.create({
       component: ManagePetComponent,

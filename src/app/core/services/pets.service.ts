@@ -12,7 +12,7 @@ import { StorageService } from './storage.service';
 //constructor no longer needed because this is an extension of StorageService
 export class PetsService extends StorageService {
   tableName = 'pets';
-  petFields = ['name', 'species', 'birthday', 'breed', 'color', 'description', 'adopted', 'sex', 'altered','microchipped','archived', 'photo'];
+  petFields = ['name', 'species', 'birthday', 'breed', 'color', 'description', 'adopted', 'sex', 'altered','microchipped','archived', 'photo', 'imagePath'];
   
   @observable pets: Array<Pet>;
   @observable filter: PetsFilters;
@@ -48,7 +48,7 @@ export class PetsService extends StorageService {
       this.tableName,
       pet.id,
       this.petFields,
-      [pet.name, pet.species, pet.birthday, pet.breed, pet.color, pet.description, pet.adopted , pet.sex , pet.altered , pet.microchipped , pet.archived ? 1: 0 , pet.photo]
+      [pet.name, pet.species, pet.birthday, pet.breed, pet.color, pet.description, pet.adopted , pet.sex , pet.altered , pet.microchipped , pet.archived ? 1: 0 , pet.photo, pet.imagePath? pet.imagePath: '']
     );
     console.log(JSON.stringify(pet) + " was archived")
   };
@@ -58,7 +58,7 @@ export class PetsService extends StorageService {
       const response = await super.create(
       this.tableName,
       this.petFields,
-      [pet.name, pet.species, pet.birthday, pet.breed, pet.color, pet.description, pet.adopted ? 1: 0 , pet.sex ? 1: 0 , pet.altered ? 1: 0 , pet.microchipped ? 1: 0 , pet.archived ? 1: 0 , pet.photo]
+      [pet.name, pet.species, pet.birthday, pet.breed, pet.color, pet.description, pet.adopted ? 1: 0 , pet.sex ? 1: 0 , pet.altered ? 1: 0 , pet.microchipped ? 1: 0 , pet.archived ? 1: 0 , pet.photo, pet.imagePath? pet.imagePath: '']
 
     );
     const savedPet = await super.getById(
@@ -75,7 +75,7 @@ export class PetsService extends StorageService {
       this.tableName,
       pet.id,
       this.petFields,
-      [pet.name, pet.species, pet.birthday, pet.breed, pet.color, pet.description, pet.adopted ? 1: 0 , pet.sex ? 1: 0 , pet.altered ? 1: 0 , pet.microchipped ? 1: 0 , pet.archived ? 1: 0 , pet.photo]
+      [pet.name, pet.species, pet.birthday, pet.breed, pet.color, pet.description, pet.adopted ? 1: 0 , pet.sex ? 1: 0 , pet.altered ? 1: 0 , pet.microchipped ? 1: 0 , pet.archived ? 1: 0 , pet.photo, pet.imagePath? pet.imagePath: '']
    );
       this.setPet(new Pet(pet));
       
