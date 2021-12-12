@@ -14,9 +14,11 @@ export class PetsFiltersPopoverComponent implements OnInit {
   constructor(private popoverController: PopoverController) { }
 
   ngOnInit() {}
+  
+  async setFilter(filter: PetsFilters){
+    // this.popoverController.dismiss(filter);
+    await this.popoverController.dismiss(filter);
 
-  setFilter(filter: PetsFilters){
-    this.popoverController.dismiss(filter);
   }
 
 }

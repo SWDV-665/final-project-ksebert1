@@ -3,41 +3,20 @@
     <ion-title>Albums</ion-title>
   </ion-toolbar>
 </ion-header>  
-  <ion-content class="home">
-    <ion-list *mobxAutorun class="home__pets">
-      <ion-card [class.home__pets__item--archived]="!!pet.archived" class="home__pets__item" *ngFor='let pet of store.filteredPets'>
-        <img class="home__pets__item__img" alt="picture of your pet" *ngIf="pet.imagePath" [src]="pet.imagePath">
-        <ion-card-header>
-          <ion-card-title>{{pet.name}}</ion-card-title>
-          <ion-card-subtitle>{{pet.species}}</ion-card-subtitle>
-        </ion-card-header>    
-        <ion-card-content class="home__pets__item__description">
-          <!-- <p>Species: {{pet.species}}</p> -->
-          <p>Breed: {{pet.breed}}</p>
-          <p>Color: {{pet.color}}</p>   
-          <p>Description: {{pet.description}}</p>
-          <p>Birthday: {{pet.birthday}}</p>
-          <p>Adoption Date: {{pet.adopted}}</p> 
-          <p>Sex: {{pet.sex}}</p>
-          <p>Altered?: {{pet.altered}}</p>
-          <!-- <div *ngIf="!pet.sex">Male</div> -->
-          <p>Microchipped?: {{pet.microchipped}}</p>
-          <div class="home__pets__item__actions">
-            <ion-button (click)="editPet(pet)" color="dark" fill="outline">
-              <ion-icon name="create">
-              </ion-icon>
-            </ion-button>
-             
-         </div>
-        </ion-card-content>
-      </ion-card>
-    </ion-list> 
-    <!-- fab placed to the bottom end -->
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button color='secondary' (click)='createPet()'>
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+
+<ion-content class="home">
+  <ion-list>
+    <ion-list-header *ngFor='let pet of store.pets'>
+      <ion-label >{{pet.name}}</ion-label>
+    </ion-list-header>
+    <ion-item (click)="takePicture()">
+      <ion-label>Add Photo</ion-label>
+      <ion-thumbnail *ngIf="petImage" slot="end">
+        <img alt="image of your pet" [src]="petImage" >
+      </ion-thumbnail>
+      <ion-icon slot="end" name="camera"></ion-icon>
+    </ion-item> 
+      </ion-list>
   </ion-content>
   
   

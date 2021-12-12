@@ -3,6 +3,7 @@ export enum PetsFilters{
     CATS = "cat",
     BIRDS = "bird",
     AMPHIBIANS = "amphibian",
-    ALL = "All"
+    ALL = "All",
+    ARCHIVED = 'archived'
 
 };

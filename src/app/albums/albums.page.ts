@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pet } from 'src/app/core/models/pet.model';
 import { PictureService } from 'src/app/core/services/picture.service';
+import { PetsService } from '../core/services/pets.service';
 
 @Component({
   selector: 'app-albums',
@@ -9,10 +10,10 @@ import { PictureService } from 'src/app/core/services/picture.service';
 })
 export class AlbumsPage implements OnInit {
   pet: Pet;
-
   petImage: string;
+ 
 
-  constructor(private pictureService: PictureService) { }
+  constructor(private pictureService: PictureService,  public store: PetsService,) { }
 
   ngOnInit() {
   }

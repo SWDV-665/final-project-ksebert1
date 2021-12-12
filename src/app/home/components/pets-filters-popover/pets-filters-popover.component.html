@@ -1,23 +1,27 @@
-<ion-list class="pets-filters">
+<ion-list class="pets-filters" >
   <ion-radio-group>
     <ion-item (click)="setFilter(filters.ALL)">
       <ion-label>All</ion-label>
-      <ion-radio> slot="start"</ion-radio>
+      <ion-radio slot="start"></ion-radio>
     </ion-item>    
     <ion-item (click)="setFilter(filters.DOGS)">
       <ion-label>Dogs</ion-label>
-      <ion-radio > slot="start"</ion-radio>
+      <ion-radio  slot="start"></ion-radio>
     </ion-item>
     <ion-item (click)="setFilter(filters.CATS)">
       <ion-label>Cats</ion-label>
-      <ion-radio> slot="start"</ion-radio>
+      <ion-radio  slot="start"> </ion-radio>
     </ion-item>
     <ion-item (click)="setFilter(filters.BIRDS)">
       <ion-label>Birds</ion-label>
-      <ion-radio> slot="start"</ion-radio>
+      <ion-radio slot="start"> </ion-radio>
     </ion-item>
     <ion-item (click)="setFilter(filters.AMPHIBIANS)">
       <ion-label>Amphibians</ion-label>
-      <ion-radio>slot="start"</ion-radio>
+      <ion-radio slot="start"></ion-radio>
+    </ion-item>
+    <ion-item (click)="setFilter(filters.ARCHIVED)">
+      <ion-label>ARCHIVED</ion-label>
+      <ion-radio slot="start"></ion-radio>
     </ion-item>
   </ion-radio-group>

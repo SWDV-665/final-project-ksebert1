@@ -39,6 +39,7 @@ export class HomePage implements OnInit {
     const response = await popover.onDidDismiss();
     if (response.data){
       this.store.setFilter(response.data as PetsFilters);
+  
 
     }
   }
@@ -62,7 +63,9 @@ export class HomePage implements OnInit {
     const pet = response.data as Pet;
     if (pet){
       this.store.createPet(pet);
+      window.location.reload();
     }
+
   }
 
     async editPet(petItem: Pet){
@@ -78,6 +81,7 @@ export class HomePage implements OnInit {
       const pet = response.data as Pet;
       if (pet){
         this.store.updatePet(pet);
+            window.location.reload();
       }
 
 
