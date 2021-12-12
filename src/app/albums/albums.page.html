@@ -1,25 +1,18 @@
 <ion-header>
   <ion-toolbar color = 'primary'>
     <ion-title>Photo Albums</ion-title>
-    <!-- <ion-buttons slot="end">
-      <ion-icon name="funnel" (click)="showFilters($event)"></ion-icon>
-    </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
-<ion-content class="photo">
-  <ion-list *mobxAutorun class="home__photos">
-    <ion-card [class.home__photos__item--archived]="!!photo.archived" class="home__photos__item" *ngFor='let photo of photoService.photos'>
-      <img class="home__photos__item__img" alt="picture of your pet" *ngIf="photo.imagePath" [src]="photo.imagePath">
-      <ion-card-header *ngFor='let pet of store.pets'>
-        <ion-card-title>{{pet.name}}</ion-card-title>
-        <ion-card-subtitle>PHOTOS</ion-card-subtitle>
-      </ion-card-header>    
-      <ion-card-content class="home__photos__item__description">
-        <p>Name: {{photo.name }}</p>
-        <p>Date: {{photo.date}}</p>   
-        <p>Description: {{photo.description}}</p>
-        <p>{{photo.imagePath}}</p>
-        <div class="home__pets__item__actions">
+
+<ion-content class="album" *ngFor='let photo of photoService.photos'>
+  <ion-list *mobxAutorun class="home__albums" >
+    <ion-label><p>Name: {{photo.name }}</ion-label>
+        <ion-label><p>Date: {{photo.date }}</ion-label>
+          <ion-label><p>Date: {{photo.date}}</p></ion-label>  
+          <ion-label><p>Description: {{photo.description}}</p></ion-label>
+          <ion-label><p>Image: {{photo.imagePath}}</p></ion-label>
+    </ion-list>
+        <!-- <div class="home__photos__item__actions">
           <ion-button (click)="createPhoto()" color="dark" >
             <ion-icon name="create">
             </ion-icon>
@@ -28,10 +21,7 @@
             <ion-icon name="archive">              
             </ion-icon>
           </ion-button>
-        </div>
-      </ion-card-content>
-    </ion-card>
-  </ion-list> 
+          </div> -->
   <!-- fab placed to the bottom end -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color='secondary' (click)='createPhoto()'>
@@ -39,6 +29,7 @@
     </ion-fab-button>
   </ion-fab>
 </ion-content>
+
 
 
   

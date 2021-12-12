@@ -1,9 +1,59 @@
 <ion-header>
-  <ion-toolbar color ='primary'>
+  <ion-toolbar color = 'primary'>
     <ion-title>Vet Information</ion-title>
-  </ion-toolbar>
-</ion-header>
+    <!-- <ion-buttons slot="end">
+      <ion-icon name="funnel" (click)="showFilters($event)"></ion-icon>
+    </ion-buttons> -->
+   </ion-toolbar> 
+</ion-header> 
 
-<ion-content>
+<ion-content class="vet">
+  <ion-list *mobxAutorun class="home__vets">
+    <ion-card [class.home__vets__item--archived]="!!vet.archived" class="home__vets__item" *ngFor='let vet of vetStore.vets'>
+      <!-- <ion-card [class.home__vets__item--archived]="!!vet.archived" class="home__vets__item" *ngFor='let vet of store.filteredvets'> -->
+   
+      <ion-card-header>
+        <ion-card-title>{{vet.name}}</ion-card-title>
+        <ion-card-subtitle>{{vet.phone}}</ion-card-subtitle>
+      </ion-card-header>    
+      <ion-card-content class="home__vets__item__description">
+        <p>email: {{vet.email}}</p>
 
+ 
+        city: string;
+        state: string;
+        zip: string;
+        vfn: string;
+        vmn: string;
+        vln: string;
+        description: string;
+        archived: boolean;
+
+        <p>Address: {{vet.address1 }}</p>
+        <p>Address: {{vet.address2}}</p>   
+        <p>City: {{vet.city}}</p>
+        <p>State: {{vet.state }}</p>
+        <p>Zip: {{vet.zip }}</p> 
+        <p>First Name: {{vet.vfn}}</p>
+        <p>Middle Name: {{vet.vmn}}</p>
+        <p>Last Name: {{vet.vln}}</p>
+        <div class="home__vets__item__actions">
+          <ion-button (click)="editVet(vet)" color="dark" >
+            <ion-icon name="create">
+            </ion-icon>
+          </ion-button> 
+           <ion-button (click)="archiveVet(vet)" color="tertiary" >
+            <ion-icon name="archive">              
+            </ion-icon>
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-list> 
+  <!-- fab placed to the bottom end -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color='secondary' (click)='createVet()'>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

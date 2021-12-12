@@ -7,6 +7,7 @@ import { PhotosFilters } from '../core/constants/photos-filters.enum';
 import { Photos } from '../core/models/photo.model';
 import { PhotosService } from '../core/services/photos.service';
 import { StorageService } from '../core/services/storage.service';
+import { ManagePhotosComponent, PhotoManageModes } from './components/manage-photos/manage-photos.component';
 
 @Component({
   selector: 'app-albums',
@@ -17,12 +18,15 @@ import { StorageService } from '../core/services/storage.service';
 export class AlbumsPage implements OnInit {
   constructor(
     public store: PetsService,
-    public pictureService: PictureService,
+    public photo : PhotosService,
+     public pictureService: PictureService,
     public modalController: ModalController,
     public popoverController: PopoverController,
     public photoService: PhotosService,
     private storage: StorageService) 
     { }
+
+
 
   ngOnInit() {
   
@@ -42,39 +46,23 @@ export class AlbumsPage implements OnInit {
   };
 
   async createPhoto() {
-    // const modal = await this.modalController.create({
-    //   // component: ManagePhotoComponent,
-    //   // componentProps: {
-    //     // mode: PhotoManageModes.ADD,
-    //     // pet: null
-    //   }
-    // });
-    // await modal.present();
-    // const response = await modal.onDidDismiss();
-    // const photo = response.data as Photos;
-    // if (photo){
-    //   this.photoService.createPhoto(photo);
-    //   window.location.reload();
+    const modal = await this.modalController.create({
+      component: ManagePhotosComponent,
+      componentProps: {
+        mode: PhotoManageModes.ADD,
+        pet: null
+      }
+    });
+    await modal.present();
+    const response = await modal.onDidDismiss();
+    const photo = response.data as Photos;
+    if (photo){
+      this.photoService.createPhoto(photo);
+      window.location.reload();
     }
 
   }
 
-  // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
