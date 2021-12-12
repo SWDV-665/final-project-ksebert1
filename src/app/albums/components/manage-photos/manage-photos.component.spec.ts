@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ManagePetComponent } from './manage-pet.component';
+import { ManagePhotosComponent } from './manage-photos.component';
 
-
-describe('ManagePetComponent', () => {
-  let component: ManagePetComponent;
-  let fixture: ComponentFixture<ManagePetComponent>;
+describe('ManagePhotosComponent', () => {
+  let component: ManagePhotosComponent;
+  let fixture: ComponentFixture<ManagePhotosComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ManagePetComponent ],
+      declarations: [ ManagePhotosComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ManagePetComponent);
+    fixture = TestBed.createComponent(ManagePhotosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

@@ -54,7 +54,7 @@ export class PhotosService extends StorageService {
   };
 
   @action
-  async createPet(photo:Partial<IPhoto>) {
+  async createPhoto(photo:Partial<IPhoto>) {
       const response = await super.create(
       this.tableName,
       this.photoFields,

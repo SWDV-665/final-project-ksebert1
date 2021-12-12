@@ -1,29 +1,45 @@
 <ion-header>
-  <ion-toolbar color='primary'>
-    <ion-title>Albums</ion-title>
+  <ion-toolbar color = 'primary'>
+    <ion-title>Photo Albums</ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-icon name="funnel" (click)="showFilters($event)"></ion-icon>
+    </ion-buttons> -->
   </ion-toolbar>
-</ion-header>  
-
-<ion-content class="albums" >
-  <ion-list>
-    <ion-list-header *ngFor='let pet of store.pets'>
-    <ion-label >{{pet.name}}</ion-label>
-    </ion-list-header>
-    <ion-item (click)="takePicture()">
-    <ion-label>Add Photo</ion-label>
-  <ion-thumbnail *ngIf="petImage" slot="end">
-  <img alt="image of your pet" [src]="petImage" >
-  </ion-thumbnail>
-  <ion-icon slot="end" name="camera"></ion-icon>
-  </ion-item> 
-  </ion-list>
+</ion-header>
+<ion-content class="photo">
+  <ion-list *mobxAutorun class="home__photos">
+    <ion-card [class.home__photos__item--archived]="!!photo.archived" class="home__photos__item" *ngFor='let photo of photoService.photos'>
+      <img class="home__photos__item__img" alt="picture of your pet" *ngIf="photo.imagePath" [src]="photo.imagePath">
+      <ion-card-header *ngFor='let pet of store.pets'>
+        <ion-card-title>{{pet.name}}</ion-card-title>
+        <ion-card-subtitle>PHOTOS</ion-card-subtitle>
+      </ion-card-header>    
+      <ion-card-content class="home__photos__item__description">
+        <p>Name: {{photo.name }}</p>
+        <p>Date: {{photo.date}}</p>   
+        <p>Description: {{photo.description}}</p>
+        <p>{{photo.imagePath}}</p>
+        <div class="home__pets__item__actions">
+          <ion-button (click)="createPhoto()" color="dark" >
+            <ion-icon name="create">
+            </ion-icon>
+          </ion-button>
+          <ion-button (click)="archivePhoto(photo)" color="tertiary" >
+            <ion-icon name="archive">              
+            </ion-icon>
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-list> 
   <!-- fab placed to the bottom end -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color='secondary' (click)='takePicture()'>
+    <ion-fab-button color='secondary' (click)='createPhoto()'>
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>
+
 
   
 
