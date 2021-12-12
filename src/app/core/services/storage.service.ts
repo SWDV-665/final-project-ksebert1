@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { StorageTypes } from '../constants/storage-types.enum';
-import { SqliteStorageService } from './sqlite-storage.service';
+// import { SqliteStorageService } from './sqlite-storage.service';
 import { LocalStorageService } from './local-storage.service';
 
 

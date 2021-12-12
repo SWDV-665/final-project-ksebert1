@@ -17,7 +17,7 @@ export class PhotosService extends StorageService {
   @observable filter: PhotosFilters;
 
   @action
-  initphotos(){
+  initPhotos(){
   this.photos = [];
   this.filter = PhotosFilters.ALL;
   this.getAllphotos();
@@ -26,11 +26,12 @@ export class PhotosService extends StorageService {
   async getAllphotos(){
     const photos = await super.getAll(this.tableName);
     console.log("This is get all photos: " , JSON.stringify(photos));
-    this.setphotos(photos.map(photo => new photo(photo))); 
+    this.setPhotos(photos.map(photo => new photo(photo))); 
   }
 
   @action
-  setphotos(photos: Array<Photos>){
+  setPhotos(photos: Array<Photos>){
+    console.log("in set Photos")
     this.photos = photos;
     console.log("photos retrieved", this.photos)
   }
@@ -41,7 +42,7 @@ export class PhotosService extends StorageService {
   };
 
   @action
-  async archivephoto(photo: Photos){
+  async archivePhoto(photo: Photos){
     photo.setArchived(true);
     await super.update(
       this.tableName,
@@ -64,11 +65,11 @@ export class PhotosService extends StorageService {
       this.tableName,
       response.insertID
     );
-    this.setphotos([...this.photos, new Photos(savedPhoto)]);
+    this.setPhotos([...this.photos, new Photos(savedPhoto)]);
   }
 
   @action
-  async updatephoto(photo:Photos) {
+  async updatePhoto(photo:Photos) {
     console.log("updating: " + JSON.stringify(photo))
     await super.update(
       this.tableName,
