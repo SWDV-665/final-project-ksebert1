@@ -9,11 +9,23 @@ import { AppComponent } from './app.component';
 import { MobxAngularModule} from 'mobx-angular';
 import { SQLite } from '@ionic-native/sqlite/ngx';
 import { AppStartupService, startupServiceFactory } from './core/services/app-startup.service';
+import { STORE_CONFIG } from './core/constants/store-config';
+import { IonicStorageModule } from '@ionic/storage-angular';
+import {Drivers, Storage} from '@ionic/storage'
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, MobxAngularModule],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule, 
+    MobxAngularModule,
+    IonicStorageModule.forRoot({
+      name: STORE_CONFIG.DATABASE_NAME,
+      driverOrder: [Drivers.IndexedDB, Drivers.LocalStorage]
+    })],
+    // IonicStorageModule.forRoot()],
   providers: [
     SQLite,
     {

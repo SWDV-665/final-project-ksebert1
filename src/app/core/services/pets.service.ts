@@ -1,22 +1,21 @@
+
 import { Injectable } from '@angular/core';
 import { action, computed, observable } from 'mobx-angular';
 import { PetsFilters } from '../constants/pets-filters.enum';
 import { IPet, Pet } from '../models/pet.model';
-import { SqliteStorageService } from './sqlite-storage.service';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PetsService {
+
+//constructor no longer needed because this is an extension of StorageService
+export class PetsService extends StorageService {
   tableName = 'pets';
+  petFields = ['name', 'species', 'birthday', 'breed', 'color', 'description', 'adopted', 'sex', 'altered','microchipped','archived', 'photo'];
+  
   @observable pets: Array<Pet>;
   @observable filter: PetsFilters;
-
-  constructor(
-    private sqliteStorage: SqliteStorageService
-  ) { 
-  
-  }
 
   @action
   initPets(){
@@ -26,8 +25,9 @@ export class PetsService {
   }
 
   async getAllPets(){
-    const pets = await this.sqliteStorage.getAll(this.tableName);
-    this.setPets(pets);
+    const pets = await super.getAll(this.tableName);
+    console.log("This is get all pets: " , JSON.stringify(pets));
+    this.setPets(pets.map(pet => new Pet(pet))); //converting what we receive from SQLite into a class Pet object.
   }
 
   @action
@@ -38,27 +38,52 @@ export class PetsService {
 
   @action
   setFilter(filter: PetsFilters){
-  this.filter = filter;
-  
-  };
-
-
-
-  @action
-  archivePet(pet: Pet){
-    pet.archived = true;
-  console.log(JSON.stringify(pet) + " was archived")
+  this.filter = filter;  
   };
 
   @action
-  createPet(pet:Partial<IPet>) {
-    this.pets.push(new Pet(pet));
-  console.log('Added a new pet.')
+  async archivePet(pet: Pet){
+    pet.setArchived(true);
+    await super.update(
+      this.tableName,
+      pet.id,
+      this.petFields,
+      [pet.name, pet.species, pet.birthday, pet.breed, pet.color, pet.description, pet.adopted , pet.sex , pet.altered , pet.microchipped , pet.archived ? 1: 0 , pet.photo]
+    );
+    console.log(JSON.stringify(pet) + " was archived")
+  };
+
+  @action
+  async createPet(pet:Partial<IPet>) {
+      const response = await super.create(
+      this.tableName,
+      this.petFields,
+      [pet.name, pet.species, pet.birthday, pet.breed, pet.color, pet.description, pet.adopted ? 1: 0 , pet.sex ? 1: 0 , pet.altered ? 1: 0 , pet.microchipped ? 1: 0 , pet.archived ? 1: 0 , pet.photo]
+
+    );
+    const savedPet = await super.getById(
+      this.tableName,
+      response.insertID
+    );
+    this.setPets([...this.pets, new Pet(savedPet)]);
   }
 
   @action
-  updatePet(pet:Pet) {
+  async updatePet(pet:Pet) {
     console.log("updating: " + JSON.stringify(pet))
+    await super.update(
+      this.tableName,
+      pet.id,
+      this.petFields,
+      [pet.name, pet.species, pet.birthday, pet.breed, pet.color, pet.description, pet.adopted ? 1: 0 , pet.sex ? 1: 0 , pet.altered ? 1: 0 , pet.microchipped ? 1: 0 , pet.archived ? 1: 0 , pet.photo]
+   );
+      this.setPet(new Pet(pet));
+      
+    
+  }
+
+  @action
+  setPet(pet: Pet){
     for (let i = 0, len = this.pets.length; i < len; ++i){
       if (pet.id === this.pets[i].id){
         this.pets[i] = pet;
@@ -74,7 +99,7 @@ export class PetsService {
 
   @computed
   get filteredPets(){
-    console.log("filter: " + this.filter);
+    console.log("Current filter: " + this.filter);
     switch (this.filter){
       case PetsFilters.ALL:
         return this.pets

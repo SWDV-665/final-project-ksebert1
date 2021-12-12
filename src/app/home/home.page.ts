@@ -22,8 +22,8 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.store.createPet({
-      name: 'Sample Pet',
-      species: 'cat'
+      // name: 'Sylvester',
+      // species: 'cat'
     });
   }
 

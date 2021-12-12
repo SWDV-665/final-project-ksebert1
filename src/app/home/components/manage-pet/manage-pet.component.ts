@@ -13,7 +13,7 @@ export enum PetManageModes {
   templateUrl: './manage-pet.component.html',
   styleUrls: ['./manage-pet.component.scss'],
 })
-export class ManagePetComponent implements OnInit {
+export class ManagePetComponent  implements OnInit {
   petForm: FormGroup;
   mode: PetManageModes = PetManageModes.ADD;
   pet: Pet;
@@ -48,7 +48,7 @@ export class ManagePetComponent implements OnInit {
       this.petForm.get('adopted').setValue(this.pet.adopted);
       this.petForm.get('sex').setValue(this.pet.sex);
       this.petForm.get('altered').setValue(this.pet.altered);
-      this.petForm.get('microchpped').setValue(this.pet.microchipped);
+      this.petForm.get('microchipped').setValue(this.pet.microchipped);
       this.petForm.get('photo').setValue(this.pet.photo);
     }
   }

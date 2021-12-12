@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import {SQLite, SQLiteObject} from '@ionic-native/sqlite/ngx';
+import { SQLite, SQLiteObject} from '@ionic-native/sqlite/ngx';
 import { STORE_CONFIG } from '../constants/store-config';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class SqliteStorageService {
-  database: SQLiteObject;
-  
+  database: SQLiteObject;  
   constructor(
     private platform: Platform,
     private sqlite: SQLite 
@@ -27,6 +28,8 @@ export class SqliteStorageService {
       console.log(err);
     }
   }
+
+
 
   getAll(table: string){
     return this.database.executeSql(
