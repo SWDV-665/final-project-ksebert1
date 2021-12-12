@@ -13,6 +13,7 @@ import { PetsFiltersPopoverComponent } from './components/pets-filters-popover/p
   styleUrls: ['./home.page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+
 export class HomePage implements OnInit {
   constructor(
     public store: PetsService,
@@ -21,10 +22,7 @@ export class HomePage implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.store.createPet({
-      // name: 'Sylvester',
-      // species: 'cat'
-    });
+
   }
 
   async showFilters(ev){
@@ -40,7 +38,6 @@ export class HomePage implements OnInit {
     await popover.present();
     const response = await popover.onDidDismiss();
     if (response.data){
-      // console.log(response.data);
       this.store.setFilter(response.data as PetsFilters);
 
     }

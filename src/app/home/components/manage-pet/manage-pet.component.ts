@@ -53,6 +53,7 @@ export class ManagePetComponent implements OnInit {
       this.petForm.get('sex').setValue(this.pet.sex);
       this.petForm.get('altered').setValue(this.pet.altered);
       this.petForm.get('microchipped').setValue(this.pet.microchipped);
+      // this.petForm.get('archived').setValue(this.pet.archived);
       // this.petForm.get('photo').setValue(this.pet.photo);
       this.petImage = this.pet.imagePath ? this.pet.imagePath : '';
     }
@@ -70,7 +71,7 @@ export class ManagePetComponent implements OnInit {
 
   }
 
-  formSubmit(){
+  async formSubmit(){
     console.log(this.petForm.value);
     let params = '';
     if (this.mode === this.manageModes.ADD){
@@ -89,7 +90,7 @@ export class ManagePetComponent implements OnInit {
 
   }
 
-  dismiss(){
+  async dismiss(){
     this.modalController.dismiss();
   }
 

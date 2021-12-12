@@ -14,7 +14,6 @@ export class LocalStorageService {
     }
 
     async init() {
-      console.log("I'm in local-storage init")
       // If using, define drivers here: await this.storage.defineDriver(/*...*/);
       const storage = await this.storage.create();
       console.log("Storage is: ", storage);

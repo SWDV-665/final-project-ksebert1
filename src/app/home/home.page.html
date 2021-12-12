@@ -13,24 +13,26 @@
       <img class="home__pets__item__img" alt="picture of your pet" *ngIf="pet.imagePath" [src]="pet.imagePath">
       <ion-card-header>
         <ion-card-title>{{pet.name}}</ion-card-title>
+        <ion-card-subtitle>{{pet.species}}</ion-card-subtitle>
       </ion-card-header>    
       <ion-card-content class="home__pets__item__description">
-        <p>{{pet.species}}</p>
-        <p>{{pet.birthday}}</p>
-        <p>{{pet.breed}}</p>
-        <p>{{pet.color}}</p>   
-        <p>{{pet.description}}</p>
-        <p>{{pet.adopted}}</p> 
-        <p>{{pet.sex}}</p>
-        <p>{{pet.altered}}</p>
-        <p>{{pet.microchipped}}</p>
+        <!-- <p>Species: {{pet.species}}</p> -->
+        <p>Breed: {{pet.breed}}</p>
+        <p>Color: {{pet.color}}</p>   
+        <p>Description: {{pet.description}}</p>
+        <p>Birthday: {{pet.birthday}}</p>
+        <p>Adoption Date: {{pet.adopted}}</p> 
+        <p>Sex: {{pet.sex}}</p>
+        <p>Altered?: {{pet.altered}}</p>
+        <!-- <div *ngIf="!pet.sex">Male</div> -->
+        <p>Microchipped?: {{pet.microchipped}}</p>
         <div class="home__pets__item__actions">
-          <ion-button (click)="editPet(pet)" color="dark" fill="outline">
+          <ion-button (click)="editPet(pet)" color="dark" >
             <ion-icon name="create">
             </ion-icon>
           </ion-button>
-          <ion-button (click)="archivePet(pet)" color="danger" fill="outline">
-            <ion-icon name="trash">              
+          <ion-button (click)="archivePet(pet)" color="tertiary" >
+            <ion-icon name="archive">              
             </ion-icon>
           </ion-button>
         </div>
