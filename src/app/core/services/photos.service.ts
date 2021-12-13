@@ -26,7 +26,7 @@ export class PhotosService extends StorageService {
   async getAllphotos(){
     const photos = await super.getAll(this.tableName);
     console.log("This is get all photos: " , JSON.stringify(photos));
-    this.setPhotos(photos.map(photo => new photo(photo))); 
+    this.setPhotos(photos.map(photo => new Photos(photo))); 
   }
 
   @action
