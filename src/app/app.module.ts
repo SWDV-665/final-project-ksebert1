@@ -11,13 +11,17 @@ import { STORE_CONFIG } from './core/constants/store-config';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import {Drivers, Storage} from '@ionic/storage';
 import {Camera} from '@ionic-native/camera/ngx';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
   declarations: [AppComponent] ,
   entryComponents: [],
   imports: [
-
+    ReactiveFormsModule,
+    FormsModule,
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule, 
