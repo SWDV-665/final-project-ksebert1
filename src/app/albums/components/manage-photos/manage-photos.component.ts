@@ -63,13 +63,11 @@ export class ManagePhotosComponent implements OnInit {
     if (this.mode === this.manageModes.ADD){
       params = {
         ...this.photoForm.value,
-        imagePath: this.petImage
-      };
+       };
     } else {
       params = {
         ...this.photo,
         ...this.photoForm.value,
-        imagePath : this.petImage
       };
     }
     this.modalController.dismiss(params);

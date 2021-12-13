@@ -18,7 +18,7 @@ import { ManagePhotosComponent, PhotoManageModes } from './components/manage-pho
 export class AlbumsPage implements OnInit {
   constructor(
     public store: PetsService,
-    public photo : PhotosService,
+    public photoStore : PhotosService,
      public pictureService: PictureService,
     public modalController: ModalController,
     public popoverController: PopoverController,
