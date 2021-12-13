@@ -7,20 +7,19 @@
    </ion-toolbar> 
 </ion-header> 
 
-<ion-content class="photo">
+<ion-content class="home" *ngFor='let photo of photoStore.photos'>
   <ion-list *mobxAutorun class="home__photos">
     <ion-card [class.home__vets__item--archived]="!!photo.archived" class="home__photos__item" *ngFor='let photo of photoStore.photos'>
-      <!-- <ion-card [class.home__photos__item--archived]="!!photo.archived" class="home__vets__item" *ngFor='let vet of photoStore.filteredPhotos'> -->
-   
-      <ion-card-header>
+      <ion-card [class.home__photos__item--archived]="!!photo.archived" class="home__vets__item" *ngFor='let vet of photoStore.filteredPhotos'>
+         <ion-card-header>
         <ion-card-title>{{photo.name}}</ion-card-title>
         <ion-card-subtitle>{{photo.description}}</ion-card-subtitle>
       </ion-card-header>    
       <ion-card-content class="home__vets__item__description">
         <p>Date: {{photo.date}}</p>
-         <p> {{photo.imagePath}}</p>
+         <p>{{photo.imagePath}}</p>
         <div class="home__photos__item__actions">
-           <ion-button (click)="archivePhoto(photo)" color="tertiary" >
+           <ion-button (click)="archivePhoto(photo)" color="primary" >
             <ion-icon name="archive">              
             </ion-icon>
           </ion-button>
@@ -28,10 +27,11 @@
       </ion-card-content>
     </ion-card>
   </ion-list> 
+  </ion-content>
   <!-- fab placed to the bottom end -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color='secondary' (click)='createPhoto()'>
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-</ion-content>
+

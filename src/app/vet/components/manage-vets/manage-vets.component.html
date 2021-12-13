@@ -1,91 +1,71 @@
 <ion-header>
-<ion-toolbar color='primary'>
-<ion-buttons slot="start">
-<ion-button (click)="dismiss()">
-<ion-icon name="arrow-back">
-</ion-icon>
-</ion-button>
-</ion-buttons>
-<ion-title>{{mode === manageModes.ADD ? 'Add Vet' : 'Edit Vet'}}</ion-title>
-</ion-toolbar>
+  <ion-toolbar color='primary'>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="arrow-back">
+        </ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{mode === manageModes.ADD ? 'Add Vet' : 'Edit Vet'}}</ion-title>
+  </ion-toolbar>
 </ion-header>
+
 <ion-content padding class="manage-vet">
-<form [formGroup]="vetForm" (submit)="formSubmit()">
-<ion-list>
-<ion-item>
-<ion-label position="stacked" color="secondary">
-Name:
-</ion-label>
-<ion-input required="true" formControlName="name" placeholder="Enter Hospital Name"></ion-input>
-</ion-item>
-<ion-item>
-<ion-label position="stacked" color="secondary">
-Phone:
-</ion-label>
-<ion-input formControlName="phone"></ion-input>
-</ion-item>
-<ion-item>
-<ion-item>
-<ion-label position="stacked" color="secondary">
-Email:
-</ion-label>
-<ion-input formControlName="email"></ion-input>
-</ion-item>
-<ion-item>
-<ion-item>
-<ion-label position="stacked" color="secondary">
-Address:
-</ion-label>
-<ion-input formControlName="address1"></ion-input>
-</ion-item>
-<ion-item>
-<ion-item>
-<ion-label position="stacked" color="secondary">
-Address2:
-</ion-label>
-<ion-input formControlName="address2"></ion-input>
-</ion-item>
-<ion-item>
-<ion-label position="stacked" color="secondary">
-City:
-</ion-label>
-<ion-input formControlName="city"></ion-input>
-</ion-item>
-<ion-item>
-<ion-label position="stacked" color="secondary">
-State:
-</ion-label>
-<ion-input formControlName="state"></ion-input>
-</ion-item>
-<ion-item>
-<ion-label position="stacked" color="secondary">
-Zip:
-</ion-label>
-<ion-input formControlName="zip"></ion-input>
-</ion-item>
-<ion-item>
-<ion-label position="stacked" color="secondary">
-First Name:
-</ion-label>
-<ion-input formControlName="vfn"></ion-input>
-</ion-item>
-<ion-item>
-<ion-label position="stacked" color="secondary">
-Middle Name:
-</ion-label>
-<ion-input formControlName="vmn"></ion-input>
-</ion-item>
-<ion-item>
-<ion-label position="stacked" color="secondary">
-Last Name:
-</ion-label>
-<ion-input formControlName="vln"></ion-input>
-</ion-item>
-<ion-label position="stacked" color="secondary">
-Description:
-</ion-label>
-<ion-input formControlName="description">  
-  </ion-input>
-  </ion-item>    <ion-button type="submit" expand="block" fill="outline">
-    Save
-  </ion-button>
+  <form [formGroup]="vetForm" (submit)="formSubmit()">
+    <ion-list>
+        <ion-label position="stacked" color="secondary">
+          Name:
+        </ion-label>
+        <ion-input required="true" formControlName="name" placeholder="Enter Hospital Name">
+        </ion-input>
+         <ion-label position="stacked" color="secondary">
+          Phone:
+        </ion-label>
+        <ion-input formControlName="phone"></ion-input>
+          <ion-label position="stacked" color="secondary">
+            Email:
+          </ion-label>
+          <ion-input formControlName="email"></ion-input>
+            <ion-label position="stacked" color="secondary">
+              Address:
+            </ion-label>
+            <ion-input formControlName="address1"></ion-input>
+              <ion-label position="stacked" color="secondary">
+                Address2:
+              </ion-label>
+              <ion-input formControlName="address2"></ion-input>
+              <ion-label position="stacked" color="secondary">
+                City:
+              </ion-label>
+              <ion-input formControlName="city"></ion-input>
+              <ion-label position="stacked" color="secondary">
+                State:
+              </ion-label>
+              <ion-input formControlName="state"></ion-input>
+              <ion-label position="stacked" color="secondary">
+                Zip:
+              </ion-label>
+              <ion-input formControlName="zip"></ion-input>
+               <ion-label position="stacked" color="secondary">
+                First Name:
+              </ion-label>
+              <ion-input formControlName="vfn"></ion-input>
+            <ion-item-divider>
+           <ion-label> Basic Item Divider </ion-label>
+            </ion-item-divider>
+              <ion-label position="stacked" color="secondary">
+                Middle Name:
+              </ion-label>
+              <ion-input formControlName="vmn"></ion-input>
+              <ion-label position="stacked" color="secondary">
+                Last Name:
+              </ion-label>
+              <ion-input formControlName="vln"></ion-input>
+            <ion-label position="stacked" color="secondary">
+              Description:
+            </ion-label>
+            <ion-input formControlName="description">
+            </ion-input>
+          <ion-button type="submit" expand="block" fill="outline">
+            Save
+          </ion-button>

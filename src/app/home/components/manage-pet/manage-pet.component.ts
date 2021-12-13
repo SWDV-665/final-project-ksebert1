@@ -21,6 +21,7 @@ export class ManagePetComponent implements OnInit {
   pet: Pet;
   manageModes = PetManageModes;
   petImage: string;
+  
   constructor(
     public modalController: ModalController,
     private fb: FormBuilder,
