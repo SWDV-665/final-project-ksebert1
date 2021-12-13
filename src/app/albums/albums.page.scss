@@ -1,9 +1,11 @@
 .home {
     &__photos {
+        background-position: 5%;
         &__item{         
             border-left: 8px solid var(--ion-color-primary);   
             &__description{
                 margin-bottom: 16px;
+
             }
             &__actions{
                 display: flex;

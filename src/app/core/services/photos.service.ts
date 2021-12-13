@@ -58,7 +58,7 @@ export class PhotosService extends StorageService {
       const response = await super.create(
       this.tableName,
       this.photoFields,
-      [photo.petid, photo.name, photo.date,photo.description,  photo.imagePath? photo.imagePath: '', photo.archived ? 1: 0 ]
+      [photo.petid, photo.name, photo.date,photo.description,  photo.imagePath, photo.archived  ]
 
     );
     const savedPhoto = await super.getById(

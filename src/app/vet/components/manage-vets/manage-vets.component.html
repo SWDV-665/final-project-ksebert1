@@ -1,4 +1,150 @@
 <ion-header>
+  <ion-toolbar color = 'primary'>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="arrow-back">          
+        </ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{mode === manageModes.ADD ? 'Add Vet' : 'Edit Vet'}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding class="manage-vet">
+  <form [formGroup]="vetForm" (submit)="formSubmit()">
+  <ion-list lines="full">
+    <ion-item>
+      <ion-label position="floating" color="secondary">
+        Name:
+      </ion-label>
+      <ion-input required="true" formControlName="name"  placeholder="Enter PVet Name" ></ion-input>
+    </ion-item>
+    <ion-item lines="full"> 
+      <ion-label position="stacked" color="secondary">
+      Phone
+      </ion-label >
+      <!-- <ion-input formControlName="species"></ion-input>
+    </ion-item>
+    <ion-item> -->
+      <ion-item>
+
+      </ion-item>
+      <ion-radio-group  formControlName="species" required="true">
+        <ion-item>
+          <ion-label>Bird</ion-label>
+          <ion-radio value="bird"></ion-radio>
+        </ion-item>  
+        <ion-item>
+          <ion-label>Cat</ion-label>
+          <ion-radio value="cat"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Dog</ion-label>
+          <ion-radio value="dog"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Amphibian</ion-label>
+          <ion-radio value="amphibian"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-item> 
+      <ion-label>
+        Birthday
+      </ion-label>
+      <ion-datetime formControlName="birthday" display-format="MM DD YY" placeholder="Select Date"></ion-datetime>
+      <ion-label>
+        Date Adopted
+      </ion-label>
+      <ion-datetime formControlName="adopted" display-format="MM DD YY" placeholder="Select Date"></ion-datetime>
+    <ion-item>
+      <ion-label>
+        Breed
+      </ion-label>
+      <ion-input formControlName="breed" placeholder="Enter Breed">
+      </ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-label>
+        Color
+      </ion-label>
+      <ion-input formControlName="color" placeholder="Enter Color">
+      </ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-label>
+        Markings
+      </ion-label>
+      <ion-textarea rows="2" formControlName="description" placeholder="Enter unusual markings">
+      </ion-textarea>
+    </ion-item> 
+    <ion-item>
+      <ion-label>
+        Sex
+      </ion-label>
+      <ion-radio-group color="secondary" formControlName="sex">
+        <ion-item>
+          <ion-label>Female</ion-label>
+          <ion-radio value="Female"></ion-radio>
+        </ion-item>  
+        <ion-item>
+          <ion-label>Male</ion-label>
+          <ion-radio value="Male"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-item> 
+    <ion-label>
+      Altered?
+    </ion-label>
+    <ion-radio-group color="secondary" formControlName="altered">
+      <ion-item>
+        <ion-label>Yes</ion-label>
+        <ion-radio value="Yes"></ion-radio>
+      </ion-item>  
+      <ion-item>
+        <ion-label>No</ion-label>
+        <ion-radio value="No"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+    <ion-item>
+      <ion-label position="stacked">
+        Microchipped?
+      </ion-label>
+      <ion-radio-group color="secondary" formControlName="microchipped">
+        <ion-item>
+          <ion-label>Yes</ion-label>
+          <ion-radio value="Yes"></ion-radio>
+        </ion-item>  
+        <ion-item>
+          <ion-label>No</ion-label>
+          <ion-radio value="No"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-item> 
+    <!-- </ion-item>  -->
+    <ion-button type="submit" expand="block" fill="outline">
+      Save
+    </ion-button>
+  </ion-list>
+</form>
+</ion-content>
+
+<!-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ion-header>
   <ion-toolbar color='primary'>
     <ion-buttons slot="start">
       <ion-button (click)="dismiss()">
@@ -9,63 +155,87 @@
     <ion-title>{{mode === manageModes.ADD ? 'Add Vet' : 'Edit Vet'}}</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content padding class="manage-vet">
-  <form [formGroup]="vetForm" (submit)="formSubmit()">
-    <ion-list>
+  <form  (submit)="formSubmit()" [formGroup]="vetForm">
+    <ion-list [formGroup]="vetForm">
+      <ion-item lines="full"  >
         <ion-label position="stacked" color="secondary">
           Name:
         </ion-label>
-        <ion-input required="true" formControlName="name" placeholder="Enter Hospital Name">
+        <ion-input required="true" formControlName="name" type='text' required placeholder="Enter Hospital Name">
         </ion-input>
+      </ion-item>
+      <ion-item lines="full"  [formGroup]="vetForm">
          <ion-label position="stacked" color="secondary">
           Phone:
         </ion-label>
-        <ion-input formControlName="phone"></ion-input>
+        <ion-input formControlName="phone" type='text' placeholder="#-###-###-####" required>
+          </ion-input>
+      </ion-item>
+      <ion-item lines="full"  [formGroup]="vetForm">
           <ion-label position="stacked" color="secondary">
             Email:
           </ion-label>
-          <ion-input formControlName="email"></ion-input>
+          <ion-input formControlName="email" type='text' placeholder="jane.doe@email.com"></ion-input>
+        </ion-item>
+        <ion-item lines="full"  [formGroup]="vetForm">
             <ion-label position="stacked" color="secondary">
               Address:
             </ion-label>
             <ion-input formControlName="address1"></ion-input>
+          </ion-item>
+          <ion-item lines="full"  [formGroup]="vetForm">
               <ion-label position="stacked" color="secondary">
                 Address2:
               </ion-label>
               <ion-input formControlName="address2"></ion-input>
+            </ion-item>
+            <ion-item line="full"  [formGroup]="vetForm">
               <ion-label position="stacked" color="secondary">
                 City:
               </ion-label>
+              </ion-item>
+              <ion-item line="full">
               <ion-input formControlName="city"></ion-input>
               <ion-label position="stacked" color="secondary">
                 State:
               </ion-label>
               <ion-input formControlName="state"></ion-input>
+            </ion-item>
+            <ion-item line="full"  [formGroup]="vetForm">
               <ion-label position="stacked" color="secondary">
                 Zip:
               </ion-label>
               <ion-input formControlName="zip"></ion-input>
+            </ion-item>
+            <ion-item line="full"  [formGroup]="vetForm">
                <ion-label position="stacked" color="secondary">
                 First Name:
               </ion-label>
               <ion-input formControlName="vfn"></ion-input>
-            <ion-item-divider>
-           <ion-label> Basic Item Divider </ion-label>
-            </ion-item-divider>
+            </ion-item>        
+            <ion-item line="full"  [formGroup]="vetForm">
               <ion-label position="stacked" color="secondary">
                 Middle Name:
               </ion-label>
               <ion-input formControlName="vmn"></ion-input>
+            </ion-item>
+              <ion-item line="full"  [formGroup]="vetForm">
               <ion-label position="stacked" color="secondary">
                 Last Name:
               </ion-label>
               <ion-input formControlName="vln"></ion-input>
+              </ion-item>
+              <ion-item line="full"  [formGroup]="vetForm">             
             <ion-label position="stacked" color="secondary">
               Description:
             </ion-label>
             <ion-input formControlName="description">
             </ion-input>
-          <ion-button type="submit" expand="block" fill="outline">
+          </ion-item>
+          <ion-button type="submit" expand="block" fill="outline" [formGroup]="vetForm">
             Save
           </ion-button>
+    </ion-list>
+    </form>
+    </ion-content> -->

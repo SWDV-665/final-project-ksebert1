@@ -7,7 +7,7 @@
    </ion-toolbar> 
 </ion-header> 
 
-<ion-content class="vet">
+<ion-content class="vet" *ngFor='let vet of vetStore.vets'>
   <ion-list *mobxAutorun class="home__vets">
     <ion-card [class.home__vets__item--archived]="!!vet.archived" class="home__vets__item" *ngFor='let vet of vetStore.vets'>
       <!-- <ion-card [class.home__vets__item--archived]="!!vet.archived" class="home__vets__item" *ngFor='let vet of store.filteredvets'> -->

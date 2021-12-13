@@ -46,6 +46,7 @@ export class AlbumsPage implements OnInit {
   };
 
   async createPhoto() {
+    console.log("in create photo")
     const modal = await this.modalController.create({
       component: ManagePhotosComponent,
       componentProps: {

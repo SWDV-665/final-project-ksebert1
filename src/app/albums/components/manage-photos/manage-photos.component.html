@@ -12,26 +12,28 @@
 <ion-content padding class="manage-photo">
   <form [formGroup]="photoForm" (submit)="formSubmit()">
   <ion-list>
-    <ion-item>
-      <ion-label position="floating" color="secondary">
+    <ion-item line="full">
+      <ion-label position="stacked" color="secondary">
         Name:
       </ion-label>
       <ion-input required="true" formControlName="name"  placeholder="Enter Photo Name" ></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item line="full">
       <ion-label position="stacked" color="secondary">
       Description
       </ion-label >
-      <ion-input required="true" formControlName="description"  placeholder="Photo Description" ></ion-input>
-    <ion-label>
+      <ion-input required="true" formControlName="description"  placeholder="Photo Description" >
+        </ion-input>
+      <ion-item line="full">
+      <ion-label position="stacked" color="secondary">
         Date
       </ion-label>
-      <ion-datetime formControlName="date" display-format="MM DD YY" placeholder="Select Date"></ion-datetime>
-  
-    </ion-item> 
+      <ion-datetime formControlName="date" display-format="MM DD YY" placeholder="Select Date">
+        </ion-datetime>
+      </ion-item> 
     <ion-item (click)="takePicture()">
       <ion-label position="stacked">
-        Photo
+        <ion-icon name="camera"></ion-icon>
       </ion-label>
       <ion-thumbnail *ngIf="photo.imagePath" slot="end">
         <img alt="image of your pet" [src]="photo.imagePath" >
@@ -39,11 +41,11 @@
       <ion-icon *ngIf="!photo.imagePath" slot="end" name="camera"></ion-icon>
     </ion-item> 
     <ion-button type="submit" expand="block" fill="outline">
-      Save
+
     </ion-button>
-  </ion-list>
-</form>
-</ion-content>
+
+
+
 
 
 
